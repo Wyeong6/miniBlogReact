@@ -13,6 +13,7 @@ import styled from "styled-components";
 import MainPage from './component/page/MainPage';
 import PostViewPage from './component/page/PostViewPage';
 import PostWritePage from './component/page/PostWritePage';
+import PostModifyPage from './component/page/PostModifyPage';
 
 const MainTitletext = styled.p`
   font-size: 24px;
@@ -29,23 +30,14 @@ function App() {
   
   */
 
-  const [test, setTest] = useState("");
-
-  axios.get("/test")
-    .then(response => {
-      setTest(response.data);
-    })
-    .catch(err => console.error(err));
-
-
   return (
     <BrowserRouter>
-      <div>서버에서 가져온 데이터 출력해봄 : {test}</div>
       <MainTitletext>나의 미니 블로그</MainTitletext>
       <Routes>
         <Route index element={<MainPage />} />
         <Route path="post-write" element={<PostWritePage />} />
         <Route path="post/:postId" element={<PostViewPage />} />
+        <Route path="post-edit/:postId" element={<PostModifyPage />} />
       </Routes>
     </BrowserRouter>
 
